@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 TRANSITIONAL//EN">
+<html>
+
+	<head>
+		<title>FZR's Very Dull PogoPlug Running Debian Linux Script Page</title>
+	</head>
+	<body>
+<b>Updated 01.08.2011 to include Wheezy and 3.* kernel. Which will probably be the last update for this page, actually.</b><p><p>	
+12.29.2010 Holy buckets, this page truly sucks.  I'll make with the improvenizing anon.<br>
+Ok, my html still sucks, but at least the page has useful links now. <p><p>
+	
+	Preamble: Apologies for the crappy HTML.  It's three AM here in Minneapolis and I wanted to get this all down before I hit the hay.<p><p>
+
+My wife gave me a <a href="http://pogoplug.com/home-en-whats-pogoplug-pogoplug-features.html">Pink PogoPlug</a>.  She got it as a spiff, likely because noone in her department had any idea what it could do and, quite frankly, it's pink.<p>
+	Dubious fashion sense notwithstanding, the PogoPlug is a very clever little device. Even <a href="http://www.slashgear.com/pogoplug-v2-review-2282798/">SlashGear seemed to like it.<a>  It uses embedded linux, IP tunnelling and zero-configuration networking to give you a very slick and easy to use NAS (network accessible storage) unit. One could host and share photos, music, movies, etc on this and never want for anything more.<p>
+		
+	Sadly, I'm not one of those people.  I found the interface clunky and I just grated at only being able to have one user on the PogoPlug. What I really wanted was Linux. <p>
+		
+		<i>Just a note: The stuff I'm talking about below -- it can brick your PogoPlug, rendering it absolutely useless for anything other than a doorstop or fuel for a fission reactor.  Seriously, if you really like your PogoPlug and aren't willing to risk having it bricked, just keep it as-is. <p>
+			"You've been warned" he said, in an ominous voice.</i><p>
+				
+		The very minute I had this thing up and running, I was immediately googling for "hacking pogoplug" and came across both PlugboxLinux which I cannot recommend to experienced linux users because it will give you migraines. However, Plugbox Linux is just peachy for new linux users for one standout reason: There is very little that can go wrong with a PlugLinux install (the danger is all in the NAND flashing) and you can do some swell things with it.  <p>
+			
+			But, I'm not a new linux user (nor am I <a href="http://3.bp.blogspot.com/_rwn0c_rQpIU/SMXb7IJD9EI/AAAAAAAAAIo/d-w0Jb9xWCY/s400/neckbeard.jpg">a sysadmin by trade</a>, just an analyst whose job is greatly buffed by having an MCSE and CNA in a former life) so there are things I need in a linux distribution to be happy: A package manager, close mirrors, never ever ever having to use vi (UPDATED: Ok, I actually like vi and vim now. Emacs still sucks), etc. We all have our preferences in life. <p>
+				
+				So with more digging, I came across <a href="http://jeff.doozan.com/debian/">Jeff Doozan's implementation of Debian linux for the PogoPlug</a> (as well as Dockstar and other similar Marvell-based NAS devices). He also figured out a way to hack the PogoPlug firmware to keep it from autoupdating.  This is important because any phone-home from the PogoPlug back to the mothership could result in a firmware update that would lock you out of it, and make the PogoPlug just a nice pink NAS device instead of the little bit of awesome that it can be. <p>
+					
+					And one might ask, "Just what kind of bits of awesome do you describe?"<p>
+						Let me list a few:<p>
+							<ul>
+							<li>Shoutcast server for setting up your own internet radio station</li>
+							<li>Firefly server for streaming out your own music anywhere</li>
+							<li>Hosting and sharing your own photos, videos, files, etc. without having to pay Flickr</li>
+							<li>Samba (aka windows file sharing) server</li>
+							<li>Calibre e-book server (see link below for FAQ on getting it set up)</li>
+							<li>Having your own WebDAV server do you don't have to pay Dropbox to get your files anywhere</li>
+							<li>A great, nearly bulletproof box on which to learn linux, system administration, SQL, networking, Perl (or any other scripting language)</li>
+							</ul><p>
+					
+					
+					  In addition, he also wrote a <a href="http://forum.doozan.com/read.php?4,831">brand new firmware</a> for it that is greatly improved as a "rescue system" but I think in time it will evolve into a useable firmware on its own. <p>
+					
+					In additon, Peter Gunn has written some <a href="http://jeff.doozan.com/debian/lcd/">very nice bash scripts</a> to handle some of the post-install configuration.  On top of that, he is very willing to give advice to us Pogoplug hackers on the forum.  <p>
+						
+						So how, one might ask, did these scripts come to live on Squeenus? Certainly not by any skill on my part.<p>
+
+I didn't write a damned one of these and sadly, can take neither credit nor blame.  My *nix skills pale to theirs and I stand on their shoulders.<p>
+
+I put them here because jeff.doozan.com gets busy at times and can time out on a wget request.  Much respect to him for writing and hosting the dockstar debian installer and to Peter for writing the setup scripts. And also to put them somewhere with my own notes for configuration later.  Because I have this odious habit of blasting systems and starting from scratch. Poor form, I know.  But I'm not in a production environment, so phbbt.<p>
+
+A couple of notes. Please pay attention to these as they could bite you in the ass: I did change the default mirror on the dockstar install to be http://punk.uchicago.edu/debian since cdn.debian.net sends you to a random mirror, many of which suck. I had errors ranging from packages.gz being corrupt to timeouts to mirrors which gave random 401's and 404's on packages.  Very frustrating. <p>
+
+If you're reading this, then I'm quite sure it goes without saying that you are able to (and well should) change the DEB_MIRROR to one geographically close to you for best results.  Temper that with finding a mirror that does not suck.<p>
+
+In setup packages script, I removed the fastest-repository finder as the fastest frequently ended up being, well, mirrors that suck. <p> 
+
+Your mileage, naturally, may vary.<p>
+
+As someone who admires small, elegant tech -- from the wristwatch to the Pogoplug -- I wish you the very best of luck with your embedded linuces, microservers and nand flashings.<p>
+
+A couple of notes, mostly for my own reference:<p>
+	* nano and dialog should be installed right away. Nano is a text editor and a blessing if you wish to avoid the horror that is vi and Emacs.  And if you're not used to either of those, you should install Nano. It's pretty easy to use.  Dialog is a framework for asking you what options you want during software installs, and without it you frequently get Hobson's choice.<p>
+		* I'm sure I'll think of more as I see them.<p>
+			* I did think of one afterall: If you are using a pink PogoPlug, do yourself a huge favor and install Jeff's rescue system.  It basically replaces the PogoPlug firmware altogether with a much, much more useable system.  But again, bewarned that all flash updates carry a risk of bricking your PogoPlug.<p><p>
+				
+				Good hunting,<p><p>
+
+-FZR<p><p>
+
+<b><u>The files:</u></b><p>
+
+<a href="http://fzr.squeenus.com/debian/dockstar.debian-squeeze.sh">dockstar.debian-squeeze.sh  (the script that installs debian on the pogoplug)</a><br> The script has been changed to point to punk.chicago.edu as the mirror rather than the Canadian mirrors which sometimes suck.<p>
+
+<b>This is the updated part</b><p>
+If you want to use the Wheezy version of Debian, then use this script instead:<br>
+<a href="http://fzr.squeenus.com/debian/dockstar.debian-wheezy.sh">dockstar.debian-wheezy.sh</a><p>
+The main advantage for me (and a few of you) of Wheezy is that Calibre (the ebook server) is now available as an apt-get package in Wheezy.<br>
+Also, I've added sudo and apt-utils to the list of packages installed in the script.  Also, it should install the 3.1* version of the linux kernel.<br> 
+<b>After this, mostly not so updated. Except the postscript.</b><p>
+
+<a href="http://fzr.squeenus.com/debian/setup_packages.sh">Peter Gunn's package setup script (with the repository search commented out)</a> This installs a cubic buttload of scripts and may not be good for
+you if you have a really small (say, less than 4 gig) thumbdrive as your /dev/sda. <p>
+
+<a href="http://fzr.squeenus.com/debian/setup_kernel.sh">Installs Gorgone's updated kernel. </a> Not sure what it does, frankly.  Haven't had time to check.<p>
+
+<a href="http://fzr.squeenus.com/debian/setup_vpn.sh">Peter Gunn's script to set up OpenVPN.  This is truly nifty.</a><br>
+	Here is a <a href="http://code.google.com/p/tunnelblick/">Mac OSX client for OpenVPN</a><br>
+	Unfortunately as of yet (Jan 2012) there is still not OpenVPN app for iOS devices (grumble grumble). <p><p><p>
+
+<b><u>A Few More Things, Mostly For My Own Pea Brain</u></b><p><p>
+	* <a href="http://wiki.debian.org/LaMp">A good tutorial on how to set up a LAMP server in Debian.</a> Follow this just like it says and you'll be up and running in no time.  While you're doing your MySQL install, after the install be sure to run <a href="http://www.mysql-optimization.com/mysql-secure-installation-program.html">mysql_secure_installation</a> and it'll wire it down a bit tighter.</a><p>
+		* <a href="http://www.debian-administration.org/articles/357">This is a much more in-depth LAMP setup walkthrough</a>, but applies to Sarge (not squeeze) so things may need to be changed a bit. <p>
+		* <a href="http://www.webmin.com/deb.html">A good tutorial about how to install Webmin in Debian.</a> Just skip to the part about "<i>Using the Webmin APT repository</i>"<p>
+			* <a href="http://forum.doozan.com/read.php?2,3214,3214#msg-3214">Where to find mkdosfs</a> since it doesn't show up with an apt-get install command.<p>
+				* <a href="http://bernaerts.dyndns.org/linux/62-debian-webdav-share">How to set up WebDAV under Debian Squeeze.</a><i>Note: I couldn't quite get this to work right.  I'd hold off on it if I were me.  Which I are.</i> <br><b>Updated:</b>After a not-inconsiderable amount of fuss, I got this working.  There are a few things you really need to keep in mind here.  These will be showstoppers if you don't do like it wants. <p><ul>
+				<li>the server name has to be your outfacing IP address unless you have your own domain name and DNS set up.</li>
+				<li>you have to do every step as sudo or things will error out with no explanation</li>
+				<li>do not do like in the example and put the password file in the same directory as you use for webdav. I mean really.</li>
+				<li>remember that everything that gets uploaded to the webdav directory is still viewable and downloadable through a browser (unless you can configure it otherwise, and if you can please let me know how.)</li>
+				<li>You still have to have port 443 open on your firewall or have port forwarding on, depending on your network setup.</li>
+								</ul><p>
+					* I recently had a BEAR of a time getting Samba set up so that the users on the system could all have a shared file directory.  I set it to read/write, made sure everything was kosher in samba.cnf, etc.  Everything was beautiful.  Except... I'd forgotten two important things: 1) To set the shared directory chown and chmod so that users could, well, use it.  And 2) I forgot to add myself to the freaking users group.  I'm a dolt.  Anyway, <a href="http://ubuntuforums.org/archive/index.php/t-507918.html">here's a walkthrough in case you have similar issues</a>.<p>
+						* <a href="http://www.rackaid.com/resources/linux-screen-tutorial-and-how-to/">Here is a really great tutorial on using Screen</a>, which is a window/session manager for *nix. </p>
+						 * Here are <a href="http://calibre-ebook.com/user_manual/faq.html#how-do-i-run-parts-of-app-like-news-download-and-the-content-server-on-my-own-linux-server">some nice instructions on getting Calibre's server going under Debian.</a> <b>Happily Updated!</b> If you're using Debian Wheezy, then getting Calibre set up is as easy as "apt-get install Calibre". That's it. No jacking around with dependencies, finding obscure Python modules, etc.<p>
+							*Here is a super-useful <a href="http://www.debianadmin.com/ddclient-update-ip-addresses-at-dynamic-dns-service.html">how-to on getting dyndns going on your PogoDockSheevaNASthinger.</a><p><p>
+
+<b>A couple more things I think are cool:</b><br>
+You can actually turn password authentication off in Linux and force authentication using SSH keys.  This should have the effect of hardening the server against brute force attacks and helping you to not get hacked. (CAVEAT: I am not a security expert -- I just google and share. <i>YOUVE BEEN WARNED.</i>)<br>
+<a href="http://mehl.co/articles/configuring_ssh_on_the_pogoplug/index.html"> Here are some steps to getting that working</a>, care of another pogoplug hacker.<br>
+If your main machine is OSX Leopard or Snow Leopard, ssh-copy-id isn't included.  So you'll need to get it.  <a href="http://www.devthought.com/2009/09/19/get-ssh-copy-id-in-mac-os-x/">Follow the steps here.</a><br>
+You may need to add an -i flag to ssh-copy-id depending.  See <a href="http://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">these notes for further details.</a><br>Here's <a href="http://mehl.co/articles/configuring_ssh_part_2/index.html">part 2 of his instructions on setting up SSH.</a> This part is using deny_hosts. Which is cool. <br>
+Here's a page on using netselect-apt to find the closest debian mirror (which hopefully does not suck).
+
+<p><p>
+							 
+<b><i>A few last notes:</i></b><p>
+I can't imagine I'll be updating this again.<br> I've pressed my old G4 Mac Mini into service, also running Debian Wheezy and have a nice fast Firewire drive on it along with a full gig of ram. It also has a DVI port so if I wanted to, I could install Xorg and have an actual display (which I wont because I don't think much of GUIs on Linux yet). But there are some really strong advantages to using a Pogoplug as a Debian server.  The main one is that it's really easy and relatively quick and painless to reinstall Debian on it. You can experiment, do all kinds of stupid stuff and bork the entire thing into uselessness.  A half hour later and bam, you're back up and running. That is 100% because of Jeff Doozan's firmware update for the Pogoplug and his install script. I'm not sure if he realizes that he's kind of created the ZX-80 (or TS-1000 for us Americans) of the Linux world -- the perfect tool for learning Linux.  I'll be passing my Pogoplug and thumbdrive on to a friend of mine who wants to learn Linux. And he can start this wonderful journey himself.<br>
+It's been a great year of learning for me. I spent about three days straight with no sleep getting the Pogoplug turned into a working Debian server. I was tickled pink when it all worked right. I got samba, webdav, a webserver, local DNS, CUPS printing, Calibre and openVNC all working just fine. I know about 10,000% more about Linux now than I did a year ago. I can write a .screenrc, a .bashrc, a .vimrc, set up Samba and Calibre, am very comfortable in the bash shell, and can do the sorts of things that make having a separate server in one's home a joy instead of being a chore.  <br>
+And all of that because of the men and women who asked questions and contributed knowledge over at <a href="http://forum.doozan.com">Forum.doozan.com</a><p> Be good, y'all. -- FZR  			
+			
+			<p<p><p>
+Last updated on 01-14-12 at about 2am
+
+	</body>
+</html>
